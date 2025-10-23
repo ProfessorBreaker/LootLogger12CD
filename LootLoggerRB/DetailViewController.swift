@@ -8,7 +8,10 @@
 import UIKit
 
 class DetailViewController: UIViewController, UITextFieldDelegate {
-
+    @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
     @IBOutlet var nameField: UITextField!
     @IBOutlet var serialNumberField: UITextField!
     @IBOutlet var valueField: UITextField!
@@ -48,6 +51,10 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        // Clear first responder
+            view.endEditing(true)
+
 
         // "Save" changes to item
         item.name = nameField.text ?? ""
