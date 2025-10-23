@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var nameField: UITextField!
     @IBOutlet var serialNumberField: UITextField!
@@ -31,7 +31,7 @@ class DetailViewController: UIViewController {
         return formatter
     }()
 
-        override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
 
             nameField.text = item.name
@@ -40,6 +40,11 @@ class DetailViewController: UIViewController {
                     numberFormatter.string(from: NSNumber(value: item.valueInDollars))
                 dateLabel.text = dateFormatter.string(from: item.dateCreated)
         }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
